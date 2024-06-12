@@ -14,3 +14,10 @@ Create
 Copy Client ID and Client Secret
 put in .env
 also put NEXTAUTH_URL=http://localhost:3000 (bare url) and NEXTAUTH_SECRET=random
+
+
+
+HOW TO ADD TO GITHUB
+git add .
+git commit -m "message"
+git push -u origin mains
