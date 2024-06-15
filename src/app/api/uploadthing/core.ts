@@ -1,9 +1,17 @@
+import { getCurrentUser } from "@/action/user";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { UploadThingError } from "uploadthing/server";
  
 const f = createUploadthing();
+
+
+
  
-const auth = (req: Request) => ({ id: "fakeId" }); // Fake auth function
+const auth = async (req: Request) => {
+    const user = await getCurrentUser();
+    return user
+
+} // Fake auth function
  
 // FileRouter for your app, can contain multiple FileRoutes
 export const ourFileRouter = {
@@ -18,14 +26,17 @@ export const ourFileRouter = {
       if (!user) throw new UploadThingError("Unauthorized");
  
       // Whatever is returned here is accessible in onUploadComplete as `metadata`
-      return { userId: user.id };
+      return { userId: user._id };
     })
     .onUploadComplete(async ({ metadata, file }) => {
       // This code RUNS ON YOUR SERVER after upload
       console.log("Upload complete for userId:", metadata.userId);
  
+    //   here save file url in database
       console.log("file url", file.url);
  
+    //   metadase is just the user._id
+      console.log("metadata", metadata.userId )
       // !!! Whatever is returned here is sent to the clientside `onClientUploadComplete` callback
       return { uploadedBy: metadata.userId };
     }),

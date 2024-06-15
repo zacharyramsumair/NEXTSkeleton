@@ -6,6 +6,7 @@ import Providers from "@/components/Providers";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "@/app/api/uploadthing/core";
+import AuthNavbar from "@/components/auth/AuthNavbar";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -33,6 +34,7 @@ export default function RootLayout({
            */
           routerConfig={extractRouterConfig(ourFileRouter)}
         />
+		<AuthNavbar/>
 					{children}
 					<Toaster />
 				</Providers>
