@@ -7,6 +7,7 @@ import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "@/app/api/uploadthing/core";
 import AuthNavbar from "@/components/auth/AuthNavbar";
+import NextTopLoader from 'nextjs-toploader';
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -35,6 +36,8 @@ export default function RootLayout({
           routerConfig={extractRouterConfig(ourFileRouter)}
         />
 		<AuthNavbar/>
+		<NextTopLoader showSpinner={false} />
+
 					{children}
 					<Toaster />
 				</Providers>

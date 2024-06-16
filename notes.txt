@@ -21,3 +21,8 @@ HOW TO ADD TO GITHUB
 git add .
 git commit -m "message"
 git push -u origin main
+
+
+
+stripe listen command line :
+stripe listen --forward-to localhost:3000/api/webhook/stripe
